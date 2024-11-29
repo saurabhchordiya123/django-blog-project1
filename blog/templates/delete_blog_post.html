@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Blog Post</title>
+</head>
+<body>
+
+    <h1>Are you sure you want to delete this post?</h1>
+
+    <p><strong>Post Title:</strong> {{ post.title }}</p>
+    <p><strong>Post Content:</strong> {{ post.content }}</p>
+
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Delete Post</button>
+    </form>
+
+    <a href="{% url 'home' %}">Cancel</a> <!-- Cancel and return to home -->
+
+</body>
+</html>

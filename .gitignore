@@ -1,0 +1,20 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# SQLite database
+db.sqlite3
+
+# Media files
+media/
+
+# Static files (if you're not using them in your production build)
+static/
+
+# Django settings (for secret key, etc.)
+*.env
+
+# IDE files (VS Code, etc.)
+.vscode/
+.idea/
