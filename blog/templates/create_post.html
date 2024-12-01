@@ -4,19 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Blog Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        .container {
+            width: 60%;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-top: 50px;
+        }
+        h1 {
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        .form-field {
+            margin-bottom: 20px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .cancel-link {
+            display: inline-block;
+            margin-top: 20px;
+            text-align: center;
+        }
+        .cancel-link a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 1.2em;
+        }
+        .cancel-link a:hover {
+            text-decoration: underline;
+        }
+        .errors {
+            color: red;
+            margin-bottom: 15px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Create New Blog Post</h1>
+    <div class="container">
+        <h1>Create New Blog Post</h1>
 
-    <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{ form.as_p }}  <!-- Renders the form fields -->
-        <button type="submit">Submit</button>
-    </form>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <!-- Display form errors if any -->
+            {% if form.errors %}
+                <div class="errors">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+            
+            <!-- Render form fields -->
+            {{ form.as_p }}
+            
+            <button type="submit">Submit</button>
+        </form>
 
-    <a href="{% url 'home' %}">Cancel</a> <!-- Cancel and return to home -->
+        <div class="cancel-link">
+            <a href="{% url 'home' %}">Cancel</a>
+        </div>
+    </div>
 
 </body>
 </html>
-
